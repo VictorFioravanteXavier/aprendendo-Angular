@@ -1,0 +1,17 @@
+CLI é um Kit de ferramentas completo para ajudar você no desenvolvimento de aplicações Angular.
+
+comando base:
+    ng (comandos)
+
+comandos:
+    ng --help = abre a aba de ajuda mostrando alguns comandos
+
+    ng version = Mostra a versão do angular
+
+    ng (n ou new) (nome da pasta) = cria uma nova pasta com algumas coisa do angular:
+        usar sccs
+    
+    ng (s ou server) = cria um local-host para o seu projeto em angular:
+        ng serve --port=(****) = está dizendo ao computador para preparar o site e deixá-lo disponível na internet;
+
+        no  "http://localhost:4200" vai levar a uma aba sobre o angular
