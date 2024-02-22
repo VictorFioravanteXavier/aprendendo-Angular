@@ -1,0 +1,56 @@
+Uma aplicação angular é baseada em componentes;
+
+Com eles podemos encapsular comportamentos e regras da interface, tornando a criação de aplicações algo mais simples.
+
+Um componente pode encapsular outro componente;
+
+Componentes permitem dividir a UI em partes independentes, reutilizáveis.
+
+Trata cada parte da aplicação como um bloco isolado, livre de outras dependências externas;
+
+Eles aceitam entradas e retornan elementos que descrevem o que deve aparecer na tela;
+
+Um componente tem:
+     1 template HTML - HTML normal
+     2 Style ( CSS ) - Estilo do HTML
+     3 Classe TS - Lógica compartamental do componente
+        se tiver .spec tem um teste unitario
+
+Decorator = @ + nome
+
+@Component = Decorator Component:
+    selector = seleciona o app-root que vai inicializar o nosso componente:
+        <app-root></app-root> = fica no index e onde se inicializa os Component
+
+    standalone: true = diz para o código que o componente é standalone facilitando inports e utilizar um componente
+        standalone = Um componente standalone é geralmente projetado para ser independente do Angular. Ele pode ser uma classe simples de TypeScript sem depender diretamente de recursos do Angular.
+
+    imports: [...]
+        São onde vão ficar os  imports da aplicação, os elementos que queremos importar vão dentro dos colchetes aparecendo em cima do código;
+        Exemplo:
+            CommonModule
+            RouterOutlet
+            NgIf
+    
+    templateUrl: 'Url do html' , template:`...`:
+        templateUrl:
+            É o template que o app vai usar; só colocar a sua Url
+        
+        template:
+            pode se escrever html dentro das crazes ( `...` )
+        
+
+    styleUrls: [Url(s) do(s) style(S)], styleUrl: 'Url do style' ou styles=[``]:
+        styleUrls: 
+            é para quando queremos usar vários CSS, pode ter um ou mais;
+
+        styleUrl: 
+            é para quando só temos 1 CSS;
+
+        styles:
+            é para mexer no css dentro do component
+
+
+
+
+
