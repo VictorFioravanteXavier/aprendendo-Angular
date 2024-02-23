@@ -10,6 +10,33 @@ Trata cada parte da aplicação como um bloco isolado, livre de outras dependên
 
 Eles aceitam entradas e retornan elementos que descrevem o que deve aparecer na tela;
 
+Mais sobre:
+    Um componente é uma unidade de código responsável por uma única tarefa ou funcionalidade. Ele é composto por três partes principais:
+        Template: É o código HTML que define a interface visual do componente.
+
+        Estilo: É o código CSS que define o estilo visual do componente.
+
+        Classe: É a classe JavaScript que define a lógica de funcionamento do componente.
+
+    Os componentes são usados para organizar e modularizar o código Angular. Eles permitem que você desenvolva aplicações mais complexas e escaláveis, mantendo o código organizado e fácil de manter.
+
+    Aqui estão alguns dos benefícios de usar componentes no Angular:
+        Reutilização: Os componentes podem ser reutilizados em diferentes partes da aplicação. Isso ajuda a reduzir a duplicação de código e a melhorar a produtividade.
+
+        Testabilidade: Os componentes podem ser testados de forma independente, o que ajuda a garantir a qualidade do código.
+
+        Organização: Os componentes ajudam a organizar o código Angular, tornando-o mais fácil de entender e manter.
+
+    Alguns exemplos de componentes Angular são:
+        Componentes de formulário: São usados para criar formulários para coletar dados do usuário.
+
+        Componentes de listagem: São usados para exibir uma lista de itens.
+
+        Componentes de navegação: São usados para controlar a navegação entre diferentes páginas da aplicação.  
+
+    Os componentes são uma ferramenta fundamental para o desenvolvimento de aplicações Angular. Eles permitem que você desenvolva aplicações mais complexas e escaláveis, mantendo o código organizado e fácil de manter.
+
+
 Um componente tem:
      1 template HTML - HTML normal
      2 Style ( CSS ) - Estilo do HTML
@@ -52,5 +79,51 @@ Decorator = @ + nome
 
 
 
+Criando um component:
+    No terminal escrever:
+        ng g component pasta/Nome do novo componente
+         ou
+        ng g c pasta/Nome do novo componente
+
+        Vai criar novos arquivos html, spec, ts e scss;
+    
+    Obs:
+        Se tiver dando erro e você tiver mudado o nome do novo componente criado olha no app.module e se ele está importando certo;
 
 
+
+Colocando um component:
+    um component é diferente do html padrão sem as tags html nem body, somente oque deseja colocar;
+
+    para colocar no seu app.component padrão tem que chamar o selector;
+
+        Exemplo:
+            NewComponent:
+                @Component({
+                    selector: 'app-new-component', 
+                    templateUrl: './new-component.component.html',
+                    styleUrls: ['./new-component.component.scss']
+                }) 
+            
+            app.component:
+                @Component({
+                    selector: 'app-root',   
+                    template:`
+                        <!-- <router-outlet></router-outlet> -->
+                        <h1> Curso de Angular </h1>
+                        
+                        <app-new-component></app-new-component>
+                    `,
+                })
+
+         No caso estou chamando o selector de NewComponent dentro do html do app.component que está sendo chamando no index.html que tem as tags body head
+         Existem dois jeitos de chamar selector:
+            Antigo:
+                <app-new-component></app-new-component>
+            
+            Novo:  
+                <app-new-component />
+         
+         Mas usa o <app-new-component></app-new-component>
+
+    

@@ -1,0 +1,61 @@
+No angular tem como mudar o tipo de css como:
+    1 - css
+    2 - scss
+    3 - less
+    4 - sass
+    5 - styl
+
+Existe um style global que se modificado muda todo o arquivo;
+
+
+Para usar uma css podemos importar ou usar localmente usando:
+    importUrl - importa somente 1 arquivo css
+        importUrl: 'caminho do arquivo'
+
+    importUrls - importa diversos arquivos css 
+        importUrls: ['caminho do arquivo 1', 'caminho do arquivo 2', ....]
+
+    styles = Ele é um css local onde pode ser mudado e criado dentro do arquivo ts;
+        styles: [`css`]
+
+    Obs:
+        o css que está sendo importado ou usado localmente não pega o component filho;
+
+
+Hierarquia:
+    os syles css tem uma Hierarquia bem construida:
+        1° = style = local
+        2° = style = importado
+        3° = style = global
+    nessa ordem de importancia 
+
+
+Seletores especiais:
+    :host ele é  um seletor especial que se refere ao componente em que está sendo usado.
+
+        É usado para aplicar estilos diretamente ao componente em si, em vez de seus elementos filhos.
+
+        Você pode definir estilos específicos para o componente raiz, por exemplo, altarando a cor do fundo ou da borda do componente.
+
+        No caso sendo mais específicos ele não deixa vazar para os elementos pais nem filhos;
+
+
+    :host-context() ele é um seletor que permite aplicar estilos com base no contexto do componente pai
+        
+        Isso é útil quando você deseja aplicar estilos com base em condições no componente pai.
+
+        Por exemplo, você pode alterar a cor de fundo de um componente filho com base em um valor definido em seu componente pai
+
+        No caso sendo mais especifico se tem algo que mude alguma coisa no css e isso vem com base em uma condição é só colcor como uma class e se tiver essa class vai acionar o :host-context():
+            :host-context(.theme-dark){
+                backgraund-colcor: black;
+                color: white;
+            }
+        Faz com que se tiver a class theme-dark ele mude de cor para um tom mais escuro;
+    
+
+    ::ng-deep ele é um mecanismo que permite que os estilos definidos em um componente sejam aplicados aos elementos.
+
+        Em outras palavras, ele permite que você contorne o encapsulamento de estilos em componentes.
+
+        No entanto, é importante notar que o uso excessivo de ::ng-deep pode tornar o código mais difícil de manter e pode não ser a melhor prática em muitos casos.
