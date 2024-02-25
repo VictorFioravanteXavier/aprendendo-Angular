@@ -1,0 +1,67 @@
+<h2>Tamplate</h2>
+<h3>Text Interpolation</h3>
+<p>
+    {{ name }} - {{ age }} - {{ sum(1, 2) }}
+</p>
+<p>
+    {{ 1 + 1 }}
+</p>
+<p>
+    {{ condition }}
+</p>
+
+<hr/>
+
+<h2>Property binding</h2>
+<!-- <element [property]='value'></element> -->
+<button [disabled]="isDisabled">Button</button>
+<!-- <img [src]="srcValue" [alt]="nameImg" [name]="nameImg"> -->
+
+<hr>
+
+<h2>Attribute binding</h2>
+<!-- <element [attr.atribute-you-are-targeting]='value'></element> -->
+<p [attr.title]="name" [attr.arial-label]="name">
+    Denner Troquate
+</p>
+
+<hr>
+
+<h2>Class and Style binding</h2>
+<p [class.background-red]="age > 32" [class.background-blue]="age < 32">{{ name }}</p>
+<p [style.text-decoration]="isTextDecoration">{{ age }}</p>
+
+<hr>
+
+<h2>Event binding</h2>
+
+<!-- 
+    <element
+        (TargetEventName)='TamplateStatement'
+    ></element>
+ -->
+
+<button (click)="incrementarIdade()">+</button>
+<button (click)="subtrairIdade()">-</button>
+<input type="text" (keydown.shift.t)="onKeyDown($event)">
+<div
+ style="background: red; width: 300px; height: 300px; margin-top: 10px;"
+ (mousemove)="onMouseMove($event)"
+></div>
+
+<hr>
+
+<h2>Two-way binding</h2>
+<input type="text" [(ngModel)]="name" /> {{name}}
+
+<hr>
+
+<h3>Diretivas de atributos</h3>
+<div [ngClass]="{
+    'background-blue': age >= 32, 
+    'background-red': age < 32}"
+>Classes condicionais.</div>
+
+<div [ngStyle]="{
+    'color': age >= 32 ? 'green' : 'red'
+}">Estilo dinâmico.</div>
