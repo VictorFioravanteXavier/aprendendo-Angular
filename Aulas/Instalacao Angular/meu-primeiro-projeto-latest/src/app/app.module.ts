@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { NewComponent } from './components/new-component/new-component.component';
 import { TemplateBindingComponent } from './components/template/template-binding/template-binding.component';
 import { CommonModule } from '@angular/common';
+import { TemplateVariablesComponent } from './components/template/template-variables/template-variables.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewComponent,
-    TemplateBindingComponent
+    TemplateBindingComponent,
+    TemplateVariablesComponent
   ],
   imports: [
     BrowserModule,

@@ -260,6 +260,74 @@ Tamplate Reference Variables:
     
     !importante: Use váriaveis de referencia quando não houver uma alternativa mais adequada.
 
+    Exemplo:
+        1 - 
+            HTML:
+                <input #name type="text" value="Denner Troquate"> {{name.value}}
+            
+         O #name é como se fosse uma referencia para resgatar o value do input;
+        
+        2 - 
+            HTML:
+                <h2 #h2>Template Variables</h2>
+
+                {{ h2.innerHtml }}
+            
+         Tambem pode ser usado para referenciar elementos html
+        
+        3 - 
+            TypeScript:
+                export class TemplateVariablesComponent implements AfterViewInit {
+                    @ViewChild('name') public nameInput !: ElementRef;
+
+                    ngAfterViewInit(){
+                        console.log(this.nameInput.nativeElement.value)
+                    }
+                }
+        
+         Ele tambem pode ser usado para chamar dentro do TypeScript basca colocar no implements "AfterViewInit" referenciar o nome da váriavel depois do "#" com o "@ViewChild" e atrlalo a uma váriavel publica com a typajem "!: ElementRef"  e para chamar o valor tem que usar o comando ".nativeElement" e ".value" se tiver
+
+        4 - 
+            TypeScript:
+                export class TemplateVariablesComponent implements AfterViewInit {
+                    @ViewChild('h2') public nameH2 !: ElementRef;
+                    
+                    ngAfterViewInit(){
+                        console.log(this.nameH2.nativeElement.innerText)
+                    }
+                }
+
+         Da mesma forma que utilizamos o de cima mas em vez do ".value" usamod o ".innerText";
+        
+        5 - 
+            TypeScript 1:
+                export class NewComponent { 
+                    public name = "Denner Troquate"
+                }
+            
+            TypeScript 2:
+                export class TemplateVariablesComponent implements AfterViewInit {
+                    @ViewChild(NewComponent) public childComponent !: NewComponent;
+
+                
+                    ngAfterViewInit(){
+                        console.log(this.childComponent.name)
+                    }
+                }
+
+            HTML:
+                <h2 #h2>Template Variables</h2>
+
+                {{ h2.innerHtml }}
+                <input #name type="text" value="Denner Troquate"> {{name.value}}
+
+                <app-new-component></app-new-component>
+            
+         Tem como chamar váriaveis de componentes filhos ou chamdos dentro do html basta fazer a mesma coisa dos outros mas em vez de referenciar a "#" você referencia a class do componente filho e depois é só colocar ".Nome da váriavel"
+
+
+ 
+
 
 
 Control Flow:

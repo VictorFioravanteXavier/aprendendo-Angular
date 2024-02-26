@@ -11,8 +11,9 @@ import { TemplateBindingComponent } from './components/template/template-binding
   template:`
     <!-- <router-outlet></router-outlet> -->
     <!-- <app-new-component></app-new-component> -->
+    <!--<app-template-binding></app-template-binding>-->
     <h1> Curso de Angular </h1>
-    <app-template-binding></app-template-binding>
+    <app-template-variables> </app-template-variables>
   `,
 })
 export class AppComponent {}

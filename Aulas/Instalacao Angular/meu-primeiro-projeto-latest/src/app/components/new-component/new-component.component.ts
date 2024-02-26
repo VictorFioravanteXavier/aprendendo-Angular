@@ -6,4 +6,6 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './new-component.component.html',
   styleUrls: ['./new-component.component.scss']
 })
-export class NewComponent { }
+export class NewComponent { 
+  public name = "Denner Troquate"
+}
