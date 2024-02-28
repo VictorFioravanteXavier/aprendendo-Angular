@@ -1,0 +1,17 @@
+<h2>Control Flow</h2>
+<h3>IF</h3>
+
+@if ( isTrue ){
+    <p>Dener</p>
+    <p>Maria</p>
+} @else{
+    Não está correto
+}
+
+<ngcontainer ngIf="isTrue; else isFalse">
+    <p>Dener</p>
+    <p>Maria</p>
+</ngcontainer>
+<ngcontainer #isFalse>
+    Não está correto
+<ngcontainer>

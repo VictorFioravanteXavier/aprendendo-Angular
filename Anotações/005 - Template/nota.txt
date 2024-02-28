@@ -333,6 +333,55 @@ Tamplate Reference Variables:
 Control Flow:
     Os modelos angulares suportam blocos de fluxo de controle que permitem mostrar, ocultar e repetir elementos condicionalmente
 
+    Tem como utilizar o IF, Else ou Else If
+        Exemplo:
+            1 - 
+                TypeScript:
+                    public isTrue = true;
+
+                HTML:
+                    @if ( isTrue ){
+                        Sim 1 é === 1
+                    } @else{
+                        Não está correto
+                    }
+
+            Esse é um exemplo de  como podemos utilizar if e else dentro do HTML
+            
+            2 - 
+                TypeScript:
+                    public isTrue = true;
+
+                HTML:
+                    @if ( isTrue ){
+                        <p>Dener</p>
+                        <p>Maria</p>
+                    } @else{
+                        Não está correto
+                    }
+
+            Tamebem pode ser usado para adiconar elementos HTMLs
+            
+            3 - 
+                TypeScript:
+                    public isTrue = true
+
+                HTML:
+                    <ngcontainer ngIf="isTrue; else isFalse">
+                        <p>Dener</p>
+                        <p>Maria</p>
+                    </ngcontainer>
+                    <ngcontainer #isFalse>
+                        Não está correto
+                    <ngcontainer>
+            
+            É uma forma antiga de utilizar o If no html
+
+     Obs: Lembre de importar o CommonModule;
+    
+
+         
+
 
 
 Deferrable Views:
