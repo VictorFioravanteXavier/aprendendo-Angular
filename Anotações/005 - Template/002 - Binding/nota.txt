@@ -1,0 +1,174 @@
+É um conceito fundamental que se refere à maneira como os dados fluem entre a parte lógica de um aplicativo e a interface do usuário.
+O binding permite que você conecte os dados do seu aplicativo com os elementos do seu tamplate html, tornando-o dinâmico e iterativo.
+
+    Existem 5 tipos de binding:
+        - Property Binding
+        - Attrbute Binding
+        - Class and Style Binding
+        - Event Binding
+        - Two-way Binding
+    
+    Property Binding:
+        <!-- <element [property]='value'></element> -->
+       
+        Ele vai pegar um elemento HTML vai pegar a propriedade HTML e pega um valor de uma propriedade dentro do TypeScript  
+
+        Exemplo:
+            1 - 
+                TypeScript:
+                    public isDisabled = true;
+
+                HTML:
+                    <button [disabled]="isDisabled">Button</button>
+                
+             Básicamente ele está referenciando a o elemento "button" que tem a propriedade "disabled" e dentro das aspas está uma variável em TypeScript no caso o "isDisabled"
+             
+             Se o "isDisabled" estiver true a propriedade "disabled" vai funcionar e se "isDisabled" estiver false vai deixar de funcionar;
+            
+            2 -
+                TypeScript:
+                    public srcValue = 'https://s2-techtudo.glbimg.com/C3GPvh6ECD-33n8Df_v1EecSL9o=/0x0:1600x1000/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2019/m/H/k84eHgTA2l7JhjO3Q6Aw/wallpaper-2560-x-1600-wallpaper.jpg';
+
+                    public nameImg = 'Logo D&D';
+
+                HTML:
+                    <img [src]="srcValue" [alt]="nameImg" [name]="nameImg">
+            
+             Nesse exemplo podemos ver que podemos utilizar esse método parar qualquer tipo de dado até liks externos
+             
+             No element "img" podemos ver que tem três property que são "src", "alt" e "name";
+                 "src": está sendo atribuido a variável "srcValue" que tem um link externo de uma imagem sobre D&D;
+
+                 "alt" e "name": estão referenciando uma só váriavel que é o nameImg que nomeia a tag "img" e se a imagem não carregar mostra a mesma coisa do name;
+    
+
+    Attrbute Binding:
+        <!-- <element [attr.atribute-you-are-targeting]='value'></element> -->
+
+        Diferente do Property binding esse é usado para referencia um atributo não se importando se ele está no DOM ou não, no caso se um atributo não for possivel ser chamado no DOM o property binding não funcionaria e o Attrbute Binding sim, por exemplo, se o dev criar uma property ela não vai estar no DOM mas poderemos chamar usando Attrbute binding
+
+        Exemplo:
+            1 - 
+                TypeScript:
+                    public name = 'Dener Troquatte';
+
+                HTML:
+                    <p [attr.arial-label]="name">
+                        Denner Troquate
+                    </p>
+             
+             Ele está referenciando o atributo arial-label que não tem no DOM e é geralmete usado para nomear elementos que não tem nomes;
+            
+            2 -
+                TypeScript:
+                    public name = 'Dener Troquatte';
+
+                HTML:
+                    <p [attr.title]='name'>
+                        Denner Troquate
+                    </p>
+            
+             Esse mostra que podemos chamar atributos quem tem no DOM;
+
+    
+    Class and Style binding:
+        Podemos adicioanar classes e stilos por condições ou não;
+        
+        Exemplo:
+            1 - Class:
+                Podemos adicioanar classes por condições
+
+                TypeScript:
+                    public isCorrect = this.name === "Dener Troquatte" ? true : false;
+                
+                SCSS:
+                    .background-blue{
+                        background-color: blue;
+                    }
+                
+                HTML:
+                    <p [class.background-red]="true" [class.background-blue]="isCorrect">{{ name }}</p>
+            
+             No caso a class "background-red" vai sempre estar nesse "p" pois sempre vai ser true mas a class background-blue tem uma condição para sua existencia que é no caso a váriavel name for igaul a "Dener Troquatte";
+
+            2 - Style:
+                TypeScript:
+                    public isTextDecoration = this.age >= 32 ? 'underline' : 'none';
+                
+                HTML:
+                    <p [style.text-decoration]="isTextDecoration">{{ age }}</p>
+            
+             Ele está fazendo um if ternario que retorna a decoração do texto se for verdadeiro;
+    
+
+    Event Binding:
+        <!-- 
+            <element
+                (TargetEventName)='TamplateStatement'
+            ></element>
+        -->
+
+        Adiona eventos com base no "TargetEventName" e faz "TamplateStatement" 
+
+        TargetEventName = É o click, mouseenter, mousemove, etc
+        TamplateStatement = Função chamada depois do evento
+
+        Exemplo:
+            1 - Aumentar e Diminuir age:
+                TypeScript:
+                    public incrementarIdade(){
+                        return this.age++;
+                    }
+                    public subtrairIdade(){
+                        return this.age--;
+                    }
+                
+                HTML:
+                    <button (click)="incrementarIdade()">+</button>
+                    <button (click)="subtrairIdade()">-</button>
+             
+             Nesse caso se clicado em cada button ele faz uma das funções do TypeScript;
+            
+            2 - Se apertado a tecla:
+                TypeScript:
+                    public onKeyDown(event: Event){
+                        console.log(event)
+                    }
+                
+                HTML:
+                    <input type="text" (keydown.shift.t)="onKeyDown($event)">
+            
+             Ele confere se a tecla apertada é shift+t se sim ele imprime os events
+            
+            3 - Onde o mouse está passando:
+                TypeScript:
+                    public onMouseMove(event: MouseEvent){
+                        console.log({
+                        clientX: event.clientX,
+                        clientY: event.clientY
+                        })
+                    }
+
+                HTML:
+                    <div
+                        style="background: red; width: 300px; height: 300px; margin-top: 10px;"
+                        (mousemove)="onMouseMove($event)"
+                    ></div>
+
+             Ele está fazendo um evento que ele vai ser acionado quando o mouse se mover ele vai imprimir as posições x e y do mouse;
+
+
+    Two-way binding:
+        Básicamente quando ele vai ele volta;
+
+        Exemplo:
+            TypeScript:
+                  public name = 'Dener Troquatte';
+
+            HTML:
+                <input type="text" [(ngModel)]="name" /> {{name}} 
+        
+         Ele está editando a váriavel "name" e já atualizando ela
+
+         obs:
+            Lembrar de importar FormsModule no modules e no TypeScript do html;

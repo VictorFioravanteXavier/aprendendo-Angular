@@ -1,0 +1,30 @@
+É uma maneira fácil e poderosa de exibir valores dinâmicos em seu tamplate html.
+Ela permite que você insira valores de váriaveis diretamente no seu código html, tornando a exibição de dados dinâmicos muito simples.
+
+Exemplo:
+    TS:
+        export class TemplateBindingComponent {
+            public name = 'Dener Troquatte';
+            public age = 32;
+
+            public sum (val1:number, val2:number) {
+                return val1 + val2
+            }
+        }
+
+    HTML:
+        <p>
+            {{ name }} - {{ age }} - {{ sum(1, 2) }} // Dener Troquatte - 32 - 3
+        </p>
+        <p>
+            {{ 1 + 1 }} // 2
+        </p>
+        <p>
+            {{ age < 1 ? 'teste' : 'teste2'}} // teste2
+        </p>
+
+    Como podemos ver tem como chamar variáveis do TypeScript para o html só colocar dentro de {{}}
+    Tem como também chamar funções e fazer ifs dentro sendo de true ou false:
+        se(?) age for menor que(<) 1  escreva 'teste' senão(:) escreva 'teste2'
+    Ou fazer esses ifs dentro do TypeScript;
+        public condition =  this.age < 1 ? 'teste' : 'teste2';

@@ -1,0 +1,232 @@
+No Angular, o controle de fluxo é a capacidade de controlar a ordem em que o código é executado.
+Ele é usado para executar código condicionalmente, iterar sobre coleções e repetir código.
+O controle de fluxo é uma ferramenta essencial para o desenvolvimento de aplicações Angular. Ele permite que você crie aplicativos mais complexos e interativos.
+
+
+
+Tem como utilizar o IF, Else ou Else If
+    Exemplo:
+        1 - 
+            TypeScript:
+                public isTrue = true;
+
+            HTML:
+                @if ( isTrue ){
+                    Sim 1 é === 1
+                } @else{
+                    Não está correto
+                }
+
+        Esse é um exemplo de  como podemos utilizar if e else dentro do HTML
+        
+        2 - 
+            TypeScript:
+                public isTrue = true;
+
+            HTML:
+                @if ( isTrue ){
+                    <p>Dener</p>
+                    <p>Maria</p>
+                } @else{
+                    Não está correto
+                }
+
+        Tamebem pode ser usado para adiconar elementos HTMLs
+        
+        3 - 
+            TypeScript:
+                public isTrue = true
+
+            HTML:
+                <ng-container *ngIf="isTrue; else isFalse">
+                    <p>Dener</p>
+                    <p>Maria</p>
+                </ng-container>
+                <ng-container #isFalse>
+                    Não está correto
+                </ng-container>
+        
+        É uma forma antiga de utilizar o If no html
+
+    Obs: Lembre de importar o CommonModule;
+
+
+
+Tem como utilizar o For:
+    Exemplo:
+        1 - Nova Forma
+            TypeScript:
+                public loadingData$: Observable<string[]> = of([
+                    "item 1",
+                    "item 2",
+                    "item 3",
+                ]).pipe(delay(3000));
+
+            HTML:
+                @for(item of loadingData$ | async; track item){
+                    <li>{{ item }}</li> 
+                }
+        
+            Geralmete usamos essa método quando queremos colcar várias tags de elementos dentro de uma array. Estamos fazedo como se fosse um for normal do TypeScript so que para usarmos a váriavel desejada perecisamos colcar "váriavel$ | async" e adicionar um track com o nome da váriavel que vai reseber os itens da array;
+
+        2 - Nova forma
+            TypeScript:
+                public loadingData$: Observable<string[]> = of([
+                    "item 1",
+                    "item 2",
+                    "item 3",
+                ]).pipe(delay(3000));
+            
+            HTML:
+                @if (loadingData | async; as data){
+                    <ul>
+                        @for(item of data; track item){
+                            <li>{{ item }}</li> 
+                        }
+                    </ul>
+                } @else {
+                    <p>Carregando...</p>
+                }
+        
+            Tem como colcoar um for dentro de um if nesse caso em vez de usarmos a váriavel no lugar comum usamos ela ela dentro do if e colocamos um apelido nela; seguindo a mesma lógica do for anterior
+        
+
+        3 - Forma antiga;
+            TypeScript:
+                public loadingData$: Observable<string[]> = of([
+                    "item 1",
+                    "item 2",
+                    "item 3",
+                ]).pipe(delay(3000));
+
+                public trackByFn(index:number) {
+                    return index
+                }
+            
+            HTML:
+                <ng-contaiener *ngFor="let item of loadingData$ | async; trackBy: trackByFn">
+                    <li>{{ item }}</li>
+                </ng-contaiener>
+            
+            Nesse mudamod algumas coisas como por exemplo o track que é no caso uma função que criamos no nosso TypeScript;
+
+        
+        4 - Forma antiga:
+            TypeScript:
+                    public loadingData$: Observable<string[]> = of([
+                        "item 1",
+                        "item 2",
+                        "item 3",
+                    ]).pipe(delay(3000));
+
+                    public trackByFn(index:number) {
+                        return index
+                    }
+            
+            HTML:
+                <ng-container *ngIf="loadingData$ | async as data; else loading">
+                    <ul>
+                        <ng-contaiener *ngFor="let item of data; trackBy: trackByFn">
+                            <li>{{ item }}</li>
+                        </ng-contaiener>
+                    </ul>
+                </ng-container>
+                <ng-container #loading>
+                    <p>Carregando...</p>
+                </ng-container>
+            
+            Tambem tem como utilizar em um if udando as mesmas regras anteriores;
+
+        
+    For tem alnguns valores dentro dele tambem:
+
+        Novo:
+            let i = $index; = Posição do elemento
+            let c = $count; = Conta quantos elementos tem
+            let f = $first; = Ve se ele é o primeiro item do array
+            let l = $last; = Ve se ele é o ultimo item do array
+            let e = $even; = Ve se é par 
+            let o = $odd; = Ve se é impar 
+        
+        Vesão antiga:
+            let i = index; = Posição do elemento
+            let c = count; = Conta quantos elementos tem
+            let f = first; = Ve se ele é o primeiro item do array
+            let l = last; = Ve se ele é o ultimo item do array
+            let e = even; = Ve se é par 
+            let o = odd; = Ve se é impar 
+    
+
+    Tambem tem como validar se a array fornecida está vazia usando "empty" retornando o elemento dentro dele:
+        Exemplo:
+            1 - Nova
+                <ul>
+                    @for(item of itens; track item.name){
+                        <li>{{ item }}</li>
+                    } @empty{
+                        <li>Não contem valores</li>
+                    }
+                </ul>
+            
+                O for é normal só tem uma validação se a array está vazia;
+            
+            2 - antiga
+                <ul>
+                    <ng-container *ngIf ='itens.length === 0; else itensExist'>
+                        <li>Não contem valores</li>
+                    </ng-container>
+                    <ng-template #itensExist>
+                        <ng-container *ngFor="let item of itens">
+                            <li>{{item.name}}</li>
+                        </ng-container>
+                    </ng-template>
+                </ul>
+            
+                Estamos utilizando um if para ver se ele está vazia ou não
+            
+
+
+Switch Case:
+    Tem como usar o Switch Case no html e é da mesma forma normal;
+
+    Exemplo:
+        1 - Nova
+            TypeScript:
+                public switchCondition = 'A';
+
+            HTML:
+                @switch (switchCondition) {
+                    case ("A") {
+                        <p>Sua letra é A</p>
+                    }
+                    case ("B") {
+                        <p>Sua letra é B</p>
+                    }
+
+                    @default {
+                        <p>Os dados não foram encontrados</p>
+                    }
+                }
+            
+            É muito parecido com o switch case do JavaScript só mudando que tem que Lembrar de iportar a função;
+        
+    
+        2 - Antiga
+            TypeScript:
+                public switchCondition = 'A';
+
+            HTML:
+                <ng-container [ngSwitch]="switchCondition">
+                    <ng-container *ngSwitchCase="'A'">
+                        <p>Sua letra é A</p>
+                    </ng-container>
+                    <ng-container *ngSwitchCase="'B'">
+                        <p>Sua letra é B</p>
+                    </ng-container>
+
+                    <ng-container *ngSwitchDefault>
+                        <p>Os dados não foram encontrados</p>
+                    </ng-container>
+                </ng-container>
+            
+            Da mesma forma se utiliza na antiga só lembrar que tem que colcar os elementos em aspas simples dentro das aspas duplas;

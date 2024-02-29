@@ -1,17 +1,136 @@
 <h2>Control Flow</h2>
 <h3>IF</h3>
 
-@if ( isTrue ){
+<!-- @if ( isTrue ){
     <p>Dener</p>
     <p>Maria</p>
 } @else{
     Não está correto
-}
+}-->
 
-<ngcontainer ngIf="isTrue; else isFalse">
+<ng-container *ngIf="isTrue; else isFalse">
     <p>Dener</p>
     <p>Maria</p>
-</ngcontainer>
-<ngcontainer #isFalse>
+</ng-container>
+<ng-template #isFalse>  
     Não está correto
-<ngcontainer>
+</ng-template> 
+
+<h3>For</h3>
+
+<!-- @if (loadingData | async; as data){
+    <ul>
+        @for(item of data; track item){
+            <li>{{ item }}</li> 
+        }
+    </ul>
+} @else {
+    <p>Carregando...</p>
+}
+
+
+@for(item of loadingData | async; track item){
+    <li>{{ item }}</li> 
+} 
+
+<ng-container *ngIf="loadingData$ | async as data; else loading">
+    <ul>
+        <ng-contaiener *ngFor="let item of data; trackBy: trackByFn">
+            <li>{{ item }}</li>
+        </ng-contaiener>
+    </ul>
+</ng-container>
+<ng-template #loading>
+    <p>Carregando...</p>
+</ng-template>-->
+
+<h3>For e seus valores</h3>
+
+<!-- @for (
+    item of itens; tarck item.name;
+    let i = $index;
+    let c = $count;
+    let f = $first;
+    let l = $last;
+    let e = $even;
+    let o = $odd;
+){
+    <p>{{ item.name }}</p>
+    <p>index - {{ i }}</p>
+    <p>count - {{ c }}</p>
+    <p>first - {{ f }}</p>
+    <p>last - {{ l }}</p>
+    <p>even - {{ e }}</p>
+    <p>odd - {{ o }}</p>
+}-->
+
+<ng-container
+    *ngFor="
+        let item of itens;
+        let i = index;
+        let c = count;
+        let f = first;
+        let l = last;
+        let e = even;
+        let o = odd; 
+        trackBy: trackByFn
+    "    
+>
+    <p>{{ item.name }}</p>
+    <p>index - {{ i }}</p>
+    <p>count - {{ c }}</p>
+    <p>first - {{ f }}</p>
+    <p>last - {{ l }}</p>
+    <p>even - {{ e }}</p>
+    <p>odd - {{ o }}</p>
+</ng-container> 
+
+<h3>For e empty</h3>
+
+<!-- <ul>
+    @for(item of itens; track item.name){
+        <li>{{ item }}</li>
+    } @empty{
+        <li>Não contem valores</li>
+    }
+</ul> -->
+
+<ul>
+    <ng-container *ngIf ='itens.length === 0; else itensExist'>
+        <li>Não contem valores</li>
+    </ng-container>
+    <ng-template #itensExist>
+        <ng-container *ngFor="let item of itens">
+            <li>{{item.name}}</li>
+        </ng-container>
+    </ng-template>
+</ul>
+
+
+<h3>Switch Case</h3>
+
+<!-- @switch (switchCondition) {
+    case ("A") {
+        <p>Sua letra é A</p>
+    }
+    case ("B") {
+        <p>Sua letra é B</p>
+    }
+
+    @default {
+        <p>Os dados não foram encontrados</p>
+    }
+} -->
+
+<ng-container [ngSwitch]="switchCondition">
+    <ng-container *ngSwitchCase="'A'">
+        <p>Sua letra é A</p>
+    </ng-container>
+    <ng-container *ngSwitchCase="'B'">
+        <p>Sua letra é B</p>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault="'A'">
+        <p>Os dados não foram encontrados</p>
+    </ng-container>
+</ng-container>

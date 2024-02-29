@@ -1,0 +1,26 @@
+Não estão dentro de tamplates mas são muito parecidos;
+
+    <element [ngClass]="{ 'class' : value}"></element>
+    <element [ngStyle]= {
+        'propriedade' : value;
+    }></element>
+
+    Ele é muito parecidos com o Class e Style binding podendo ter várias condiçõese classes usando apenas um comando;
+
+    Exemplo:
+        1 - 
+            <div [ngClass]="{
+                'background-blue': age >= 32, 
+                'background-red': age < 32}"
+            >Classes condicionais.</div>
+        
+         Ele vai adicioanar a class se alguma validação for verdadeira;
+        
+        2 - 
+            <div [ngStyle]="{
+                'color': age >= 32 ? 'green' : 'red'
+            }">Estilo dinâmico.</div>
+        
+         Ele adicona a propriedade colcor na div se tiver true;
+        
+    Obs: Lembre de importar no app.modules (CommonModule)
