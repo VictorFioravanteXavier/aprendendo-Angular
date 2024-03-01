@@ -8,7 +8,7 @@ comandos:
 
     ng version = Mostra a versão do angular
 
-    ng (n ou new) (nome da pasta) = cria uma nova pasta com algumas coisa do angular:
+    ng (n ou new) (nome da pasta) = cria uma nova pasta com algumas coisas do angular:
         usar sccs
     
     ng (s ou server) = cria um local-host para o seu projeto em angular:
