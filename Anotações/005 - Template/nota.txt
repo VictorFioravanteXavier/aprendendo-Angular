@@ -8,18 +8,147 @@
 
 
 
-
-Control Flow:
-    
-            
-            
-
-
-
-                            
-
-
-
 Deferrable Views:
     Podem ser usadas no modelo de componente para adiantar o carregamento de dependências.
     Essas dependências incluem componentes, diretivas e pipes e qualquer CSS associado.
+
+    @defer:
+        on - especifica uma condição de acionador usando um acionador da lista.
+        (idle, timer, viewport, interation, hover, immediate, prefeth)
+
+        Nota: Vários on triggers são sempre condições OR.
+
+        idle:
+            É usado para fazer com que uma pequena parte de seu código seja carregado depois de tudo html, css e JavaScript seja carregado.
+            Já vem por padrão;
+
+            Exemplo:
+                @defer (on idle){
+                    <app-new-component></app-new-component>
+                }
+
+             Ele vai carregar o app-new-component depois que tudo já for carregado;
+        
+        time:
+            time serve para colocar um tempo até oque está dentro defer carregar
+            1s = 1 segundo
+            1000ms = 1 segundo
+        
+            Exemplo:
+                @defer (on time(5s)){
+                    <app-new-component></app-new-component>
+                }
+             
+             Ele vai executar o comando dentro de defer depois de 5 segundos
+
+        viewport:
+            Serve para carregar o elemento assim que ele aparecer na tela,
+            Muito bom para usar com imagens;
+
+            Exemplo:
+                @defer (on viewport){
+                    <app-new-component></app-new-component>
+                } 
+             
+             Quando o elemento aparecer na tela do usuário vai carregar oque está dentro do defer;
+            
+        interation:
+            Carrega assim que o usuário interage com o elemento;
+
+            Exemplo:
+                1-
+                    @defer (on interation){
+                        <app-new-component></app-new-component>
+                    }
+                
+                 O elemento é carregado assim que o usuário clica nele 
+
+                2 -
+                    <h2 #trigger>Deferrable Views</h2>
+
+                    @defer (on interation(trigger)){
+                        <app-new-component></app-new-component>
+                    }
+                 
+                 Agora estamos referenciando onde o usuário deve clicar para acontecer no caso no h2
+
+        hover:
+            Se o usuário passar o mouse por cima do elemento vai aparecer;
+
+            Exemplo:
+                @defer (on hover){
+                    <app-new-component></app-new-component>
+                }
+            
+        immediate:
+            Carrega o elemento assim que os arquivos já estão prontos;
+            Muito parecido com o idle mas sua diferença é que o idle espera o navegador entrar no estado inativo para carregar e o immediate carrega assim que os arquivos são carregados totalmete
+
+            Exemplo:
+                @defer (on immediate){
+                    <app-new-component></app-new-component>
+                } 
+            
+             Assim que os arquivos do arquivo carregarem no navegador vai carregar o que está dentro de defer
+
+        prefeth:
+            Serve para carregar colocando um especie de OR
+
+            Exemplo:
+                1 - 
+                    @defer (on interation; prefeth on idle){
+                        <app-new-component></app-new-component>
+                    }
+                 
+                 A forma que isso acontece é que o arquivo é carregado normalmente na forma idle mas só sera mostrado se houver uma interação com ele
+                
+                2 - 
+                    <h2 #trigger>Deferrable Views</h2>
+
+                    @defer (on interation; prefeth on interation(trigger)){
+                        <app-new-component></app-new-component>
+                    }
+                 
+                 Agora se clicado no h2 os arquivos são carregados mas não mostrados só mostrados se clicado no element
+                
+                3 - 
+                    <h2 #trigger>Deferrable Views</h2>
+
+                    @defer (on interation(#trigger2); prefeth on interation(trigger)){
+                        <app-new-component></app-new-component>
+                    } @placeholder {
+                        <p #trigger2>Mostar antes de carregar algo.</p>
+                    }
+                 
+                 Agora se clicado no h2 os arquivos são carregados mas não mostrados, se clicar no placeholder os arquivos são mostrados. Mas tambem tem como só clicar no placeholder se precisar passar pelo h2 e vai carregar o elemento e o mostralo
+            
+        Condicional:
+            Exemplo de como funciona o condicional de um defer:
+                <h2 #trigger>Deferrable Views</h2>
+
+                @defer (on time(5s), on iteraction(trigger), on hover){
+                    <app-new-component></app-new-component>
+                }
+             
+             Temos 3 possibidades de carregar o arquivo 
+                1 - Esperar 5 segundos
+                2 - Clicar no h2
+                3 - Passar o mouse por cima do elemento
+             Cada uma carrega da sua maneira mas somente uma vez;
+        
+        when:
+            especifica uma condição imperativa como uma expreção que retorna um booleano. Quando esta expreção se torna verdadeiro, o espaço reservado é trocado pelo conteúdo carregado lentamente (o que pode ser uma operação assíncrona se as dependências precisarem ser buscadas)
+
+            No caso ele mostra o que está dentro de defer ser a condição retornar true
+
+            Exemplo:
+                TypeScript: 
+                    public isTrue = true;
+
+                HTML:
+                    @defer (when isTrue){
+                        <app-new-component></app-new-component>
+                    }
+
+             Ele vai fazer o elemento dentro de defer pois ele é true se for false não vai fazer;
+

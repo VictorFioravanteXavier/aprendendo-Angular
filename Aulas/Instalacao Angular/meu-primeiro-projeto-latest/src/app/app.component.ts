@@ -14,8 +14,9 @@ import { TemplateControlFlowComponent } from './components/template/template-con
     <!-- <app-new-component></app-new-component> -->
     <!--<app-template-binding></app-template-binding>-->
     <!--<app-template-variables> </app-template-variables> -->
+    <!--<app-template-control-flow></app-template-control-flow> -->
     <h1> Curso de Angular </h1>
-    <app-template-control-flow></app-template-control-flow>
+    <app-template-deferrable-views></app-template-deferrable-views>
   `,
 })
 export class AppComponent {}

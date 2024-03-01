@@ -1,0 +1,11 @@
+<h2 #trigger>Deferrable Views</h2>
+
+@defer (when isTrue){
+    <app-new-component></app-new-component>
+} @placeholder {
+    <p #trigger2>Mostar antes de carregar algo.</p>
+} @loading{
+    <p>Loading...</p>
+} @error{
+    <p>Loading Failed :(</p>
+}

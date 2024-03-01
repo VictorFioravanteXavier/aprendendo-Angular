@@ -8,6 +8,7 @@ import { TemplateBindingComponent } from './components/template/template-binding
 import { CommonModule, NgIf } from '@angular/common';
 import { TemplateVariablesComponent } from './components/template/template-variables/template-variables.component';
 import { TemplateControlFlowComponent } from './components/template/template-control-flow/template-control-flow.component';
+import { TemplateDeferrableViewsComponent } from './components/template/template-deferrable-views/template-deferrable-views.component';
 
 
 
@@ -17,7 +18,8 @@ import { TemplateControlFlowComponent } from './components/template/template-con
     NewComponent,
     TemplateBindingComponent,
     TemplateVariablesComponent,
-    TemplateControlFlowComponent
+    TemplateControlFlowComponent,
+    TemplateDeferrableViewsComponent
   ],
   imports: [
     BrowserModule,
