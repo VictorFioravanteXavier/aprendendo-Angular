@@ -1,0 +1,12 @@
+Ele é a interface de linha de comando para o Angular.
+
+Documentação:
+    https://v14.angular.io/docs
+
+Comandos:
+    ng - mostra vários comandos que podemos fazer.
+        ng [command name] --help - para saber oque ele pode fazer
+    
+    ng new (n) [nome da pasta] - cria uma pasta com coisas do angular
+
+    ng server (s) - cria um local host de seu projeto
