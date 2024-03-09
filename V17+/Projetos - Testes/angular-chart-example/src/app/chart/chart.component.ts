@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Chart }from 'chart.js'; // Importar o pacote Chart.js
+import { Chart } from 'chart.js'; // Importar o pacote Chart.js
 
 @Component({
   selector: 'app-chart',
