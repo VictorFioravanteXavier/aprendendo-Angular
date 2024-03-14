@@ -4,7 +4,7 @@ import { Chart } from 'chart.js'; // Importar o pacote Chart.js
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
-  styleUrls: [] // Remova a referência ao arquivo CSS
+  styleUrls: ['./chart.component.scss'] 
 })
 
 export class ChartComponent implements OnInit {
