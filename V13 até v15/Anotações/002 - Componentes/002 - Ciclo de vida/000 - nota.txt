@@ -1,0 +1,25 @@
+No Angular, cada componente tem um ciclo de vida, vários estágios diferentes pelos quais ele passa
+
+Existem 8 estágios diferentes no ciclo de vida do componente.
+
+Cada estágia é chamado de ciclo de vida e basicamente é um evento chamado.
+
+Portanto, podemos usar esses eventos em diferentes fases de nosso aplicativo para obter o controle dos componentes.
+
+Como o componente é uma classe no TypeScript, cada componente deve ter um método construtar:
+    constructor() {}
+
+O construtor da classe do componente é executado, primeiro, antes da execução de qualquer outro evento de ciclo de vida.
+
+Eventos: 
+    ngOnInit() - é executado uma vez quando o componente é inicializado;
+
+    ngOnChanges() - executado também uma vez na criação do componente e toda vez que ele sofrer alguma mudança;
+
+    ngDoCheck() - executado a cada mudança que o ngOnChange não detecta;
+        ngAfterContentInit() - sempre que um conteúdo vindo de uma fonte externa do componente é inserido;
+        ngAfterContentChecked() - quando o conteúdo externo é verificado;
+        ngAfterViewInit() - executado logo após os dados dos filhos e do próprio componente ser inicializado;   
+        ngAfterViewChecked() - sempre que é detectado uma alteração do conteúdo é chamado esse cara.
+        
+    ngOnDestroy() - executado na destruição do componente.

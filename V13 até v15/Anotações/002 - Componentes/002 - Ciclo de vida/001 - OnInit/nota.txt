@@ -1,0 +1,7 @@
+ngOnInit()
+
+Esse evento é inicializado após o Angular exibir pela primeira vez as propriedades
+vinculadas aos dados ou quando o componente foi inicializado.
+
+Esse evento é usado principalmente para a inicializar dados em um componente.
+

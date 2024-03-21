@@ -1,0 +1,18 @@
+ngDoCheck()
+    ngAfterContentInit()
+    ngAfterContentChecked()
+    ngAfterViewInit()
+    ngAfterViewChecked()
+
+ngDoCheck = Este evento é disparado sempre que as propriedades de entrada de um componente são verificadas.
+
+ngAfterContentInit = Este método de ciclo de vida é executado quando o Angular realiza qualquer projeção do componente.
+
+ngAfterContentChecked = Este método de gancho de ciclo de vida é executado sempre que o conteúdo do componente é verificado
+pelo mecanismo de detecção de alteração do Angular.
+
+ngAfterViewInit = Este método de gancho de ciclo de vida é executado quando a visualização do componente foi totalmente
+inicializada.
+
+ngAfterViewChecked = Ele é executado toda vez que a visualização de um determinado componente foi verificada pelo algoritimo
+de detecção de alterações do Angular.

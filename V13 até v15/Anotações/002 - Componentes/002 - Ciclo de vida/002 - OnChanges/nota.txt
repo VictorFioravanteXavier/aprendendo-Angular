@@ -1,0 +1,8 @@
+ngOnChanges()
+
+Esse evento é executado sempre que um valor de um controle
+de entrada dentro do componente é alterado.
+
+Sempre que um componente recebe um dado atráves do "@Input()" o 
+"ngOnChanges()" é invocado.
+
