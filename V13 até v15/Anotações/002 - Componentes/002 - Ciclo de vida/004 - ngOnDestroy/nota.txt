@@ -1,0 +1,3 @@
+ngOnDestroy()
+
+Ele invocado assim que um 

@@ -1,0 +1,7 @@
+É uma forma de exibir dados em seu component HTML,
+nada mais do que trabalhar com dados.
+
+- interpolation 
+- Property Binging
+- Event Binging
+- Two-way Binging

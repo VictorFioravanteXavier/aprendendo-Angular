@@ -1,0 +1,13 @@
+É a reunião com Property-Binging com Event-Binging.
+
+Use para ouvir eventos e atualizar valores simultaniamante entre os componentes pai e filho.
+
+HTML:
+    <input [(ngModel)]='nome'>
+    <span>{{nome}}</span>
+
+TypeScript:
+    public nome = 'Dener'
+
+É como o nome diz o vai e volta tu vai atribuir uma váriavel a algo e esse váriavel vai retornar igaul a sua alterção.
+

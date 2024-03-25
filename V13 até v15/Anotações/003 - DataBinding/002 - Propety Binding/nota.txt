@@ -1,0 +1,9 @@
+Ajuda a definir valores para propriedades de elementos ou diretivas HTML.
+
+HTML:
+    <button [disabled]='disabledButton'>Button</button>
+
+    <img [src]='itemImageUrl'>
+    <img src='{{itemImageUrl}}'>
+
+É colocar a propriedade dentro de um colchete e colocar o nome da variável dentro das aspas 

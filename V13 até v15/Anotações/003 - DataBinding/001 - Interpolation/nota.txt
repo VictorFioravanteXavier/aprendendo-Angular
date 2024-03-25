@@ -1,0 +1,9 @@
+A interpolação de texto permite que você incorpore valores dinâmicos em seus modelos HTML.
+
+HTML:
+    <h1>{{ title }}</h1>
+
+TypeScript:
+    public title: string = "Bem vindo!";
+
+É có colcoar a váriavel dentro de duas chaves que ela vai aparecer podendo fazer coisas básicas dentro delas.

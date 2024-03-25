@@ -1,0 +1,7 @@
+É a associação de eventos que permite você escutar e responder às ações do usuário,
+como pressionamentos de teclas, movimentos do mouse, cliques e toques.
+
+HTMl:
+    <button (click)='calc()'>Button</button>
+
+Tu vai colocar um evento e depois uma função que esse evento vai chamar.
