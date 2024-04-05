@@ -1,0 +1,4 @@
+<p [ngClass]="{'calsse' : variável, calsse: !variável}">Exemplo</p>
+
+o objetivo do ngClass é fazer validações com classes no caso se a váriavel for true vai colocar uma classe
+se for false vai colocar outra classe.

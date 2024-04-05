@@ -1,0 +1,25 @@
+<div [ngSwitch]="variável">
+    <p *ngSwitchCase="'condição para mostar'">
+        Dener
+    </p>
+
+    <p *ngSwitchCase="'condição para mostar'">
+        Nay
+    </p>
+
+    <p *ngSwitchDefault>
+        Deu ruim sua busca
+    </p>
+</div>
+
+
+funciona como um Switch Case normal e oque está acima é a sintax.
+
+[ngSwitch] = "variável" 
+    é onde você vai colocar a variável que vai ser vista no ngSwitchCase
+
+*ngSwitchCase = "'condição para mostar'"
+    Onde vai a condição para mostrar o elemento.
+
+*ngSwitchDefault
+    é oque vai aparecer se nenhuma condição for atendida

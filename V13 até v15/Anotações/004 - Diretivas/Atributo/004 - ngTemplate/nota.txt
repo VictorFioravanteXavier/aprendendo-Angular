@@ -1,0 +1,16 @@
+Ele é um atributo html limpo
+
+não é uma div, p, span, etc ele é um elemento que vai ajudar a fazer verificações com
+ngIf fazer laços de repetição com o ngFor
+
+Exemplo ngIf:
+    <ng-template [ngIf]="true">
+        <p>
+            True
+        </p>
+    </ng-template>
+
+Exemplo ngFor:
+    <ng-template ngFor let-item [ngForOf]="list">    
+        <p>{{item.nome}}</p>
+    </ng-template>

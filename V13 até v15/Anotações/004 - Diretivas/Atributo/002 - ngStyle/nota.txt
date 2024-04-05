@@ -1,0 +1,5 @@
+<p [ngStyle]="{'propriedade': variável, 'propriedade': variável}">Exemplo</p>
+
+
+Ele tem uma sintax parecida com o ngClass mas seu abjetivo é mudar as propriedades com base
+em variáveis em formato string.

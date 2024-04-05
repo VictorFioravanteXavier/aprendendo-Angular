@@ -1,0 +1,11 @@
+*ngIf=""
+
+É basicamente se o valor dentro das aspas for true a tag que ele está vai aparecer se for false vai sumir
+
+<p *ngIf="condition; else elseBlock">True</p>
+<ng-template #elseBlock>
+    <p>False</p>
+</ng-template>
+
+tem como colocar condições para mostrar outra coisa dependendo do que vem depois do "#" 
+

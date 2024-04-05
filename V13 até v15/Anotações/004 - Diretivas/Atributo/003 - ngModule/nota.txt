@@ -1,0 +1,8 @@
+Tem que importar ele no "app.modules" no caso o "FormsModule"
+
+ele é colocado no input que vai estar atrelado a uma variável que vai ser mudada 
+se o input for mudado. ele faz um vai e volta mortrando a variável assim que mudada
+
+<input type="text" [(ngModel)]="variável">
+
+Assim o input vai estar atrelado a uma variável 

@@ -1,0 +1,37 @@
+Se usa para quando tiver um componente que precise mudar certos valores ele mude
+no componente pai e coloque no lugar certo. Exemplo:
+
+Filho:
+    <ng-content select="h1"></ng-content>
+        INICIO
+        ...
+        FINAL
+    <ng-content select="hr"></ng-content>
+
+Pai:
+    <app-diretivas-atributos>
+      <h1>Aulas de diretivas</h1>
+      <hr>
+    </app-diretivas-atributos>
+
+    <app-diretivas-atributos>
+      <h1>Exemplo</h1>
+      <hr>
+    </app-diretivas-atributos>
+
+Tela:
+    Aulas de diretivas
+    INICIO
+    ...
+    FINAL
+    _________________
+
+    Exemplo
+    INICIO
+    ...
+    FINAL
+    _________________
+
+No caso ele vai colocar o h1 no comço do código e o hr no final sempre
+
+Podendo mudar o valor de h1 e hr ou repitir a rquisição do finlho mas mudando os valores de h1.

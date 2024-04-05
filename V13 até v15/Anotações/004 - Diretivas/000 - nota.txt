@@ -1,0 +1,36 @@
+As diretivas são classes que adicionam
+comportamento adicional aos elementos 
+em seus aplicativos em Angular.
+
+Com as diretivas integrais do Angular,
+você pode gerenciar formulários, listas,
+estilos e o que os usuários veem.
+
+As diretiavas são sepradas de algumas formas, como:
+
+- Diretivas de atributo:
+    Que alteram a aparência ou comportamento de 
+    um elemento, componente ou outra diretiva.
+
+    - ngClass - adiciona e remove um conjunto de classes CSS;
+
+    - ngStyle - adiciona e remove um conjunto de estilos HTML;
+
+    - ngModel - adiciona vinculação de dados bidirecional a um
+    elemento de formulário HTML.
+
+
+- Diretivas estruturais
+    Eles moldam ou remodelam a estrutura do DOM,
+    adionando, removendo e manipulando os elementos
+    dos host aos quais são anexados.
+
+    - *ngIf - Condicionalmente cria ou descarta visualizações;
+    do modelo
+
+    - *ngFor - Repete um nó para cada item de uma lista;
+
+    - *ngSwitch - Um conjunto de diretivas que altenam entre
+    visões alternativas.
+
+

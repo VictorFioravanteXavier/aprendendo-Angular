@@ -1,0 +1,47 @@
+<!-- <ng-content select="h1"></ng-content>
+
+<div *ngIf="nome != 'Dener'">
+    <h2>NgClass</h2>
+    <p [ngClass]="{'active' : valor, disabled: !valor}">Exemplo</p>
+    
+    <hr>
+    
+    <h2>NgStyle</h2>
+    <p [ngStyle]="{'height': altura, 'background': backgroundColor}">Exemplo</p>
+</div>
+
+
+<hr>
+
+<h2>NgModel</h2>
+<input type="text" name="Exemplo" id="Exemplo" [(ngModel)]="nome">
+<button (click)="salvar()">Salvar</button>
+
+<li *ngFor="let item of list">{{item.nome}}</li>
+
+<hr>
+
+<h2>NgTemplate</h2>
+
+<ng-template [ngIf]="true">
+    <p>
+        True
+    </p>
+</ng-template>
+
+<ng-template ngFor let-item [ngForOf]="list">    
+    <p>{{item.nome}}</p>
+</ng-template>
+
+<hr>
+<h2>NgContent</h2>
+<ng-content select="hr"></ng-content>
+ -->
+<hr>
+
+<input type="text" name="Exemplo" id="Exemplo" [(ngModel)]="nome">
+<button (click)="salvar()">Salvar</button>
+
+<li *ngFor="let item of list">{{item.nome | uppercase}}</li>
+<br>
+{{date | date: "dd/MM/yyyy"}}

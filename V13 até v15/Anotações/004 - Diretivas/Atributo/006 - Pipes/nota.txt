@@ -1,0 +1,31 @@
+Um pipe é inicializado com "|" e depois dele colocamos um comando
+
+Por Exemplo:
+    Quero que todos os nomes listados nesse código estejam com todas as letras maiúsculas:
+
+    Código com pipe:
+        <input type="text" name="Exemplo" id="Exemplo" [(ngModel)]="nome">
+        <button (click)="salvar()">Salvar</button>
+
+        <li *ngFor="let item of list">{{item.nome}}</li>
+    
+    Código com pipe:
+        <input type="text" name="Exemplo" id="Exemplo" [(ngModel)]="nome">
+        <button (click)="salvar()">Salvar</button>
+
+        <li *ngFor="let item of list">{{item.nome | uppercase}}</li>
+
+    no caso oque muda é o "| uppercase" no lado de nome que facilta o código que o dev 
+    teria que fazer uma function só para colocar o nome em maiúsculo. 
+
+
+Tem como usar os pipes para facilitar mostrar alguma váriavel:
+
+    TypeScript:
+        public date:Date = new Date()
+    
+    HTML:
+        {{date | date: "dd/MM/yyyy"}}
+
+    No caso ele mostaria um data da forma que ele vem da function Date mas como tem uma pipe de date
+    ele modifica a váriavel para se encaixar no que está dentro das aspas 
