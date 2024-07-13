@@ -1,0 +1,45 @@
+@Output() public enviarDados = new EventEmitter();
+
+vai cirar um metodo Output que vai ter por exemplo enviar dados
+que vai ser igaul a um eventEmitter do proprio angular cuidde 
+para caso esteja importando do lugar errado 
+
+
+quando você quiser mandar um dado de volta ou dar um Output
+basta colocar o seguinte comando:
+    this.enviarDados.emit(váriavel que deseja mandar)
+
+Exemplo em código:
+    TS:
+        @Output() public enviarDados = new EventEmitter();
+    
+        public list: Array<{nome: string, idade:number}> = [
+            {nome: 'Dener', idade: 29},
+            {nome: 'Nay', idade: 31},
+            {nome: 'Jose', idade: 58}
+        ]
+
+        public getDados(event:number) {
+            this.enviarDados.emit(this.list[event])
+        }
+
+    Html:
+        <p *ngFor="let item of list; let i = index">
+            {{item.nome}} -
+            {{item.idade}}
+            <button (click)="getDados(i)">Enviar Dados</button>
+        </p>
+
+E para recebe esses dados em outro componente tem usar o seguinte comando:
+    <app-output (variavel que você está enviando os dados)="Função que vai receber os dados"></app-output>
+
+Exemplo em código:
+    Html:
+        <app-output (enviarDados)="setDados($event)"></app-output>
+    
+    TS:
+        public getDados : {nome: string, idade: number} | undefined;
+
+        public setDados(event: {nome: string, idade: number}) {
+            this.getDados = event;
+        }

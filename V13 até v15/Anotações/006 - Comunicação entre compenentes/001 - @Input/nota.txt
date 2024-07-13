@@ -1,0 +1,12 @@
+O Input funciona parar importar um dado de uma compoenente para outro.
+
+
+Componente 1.ts:
+    @Input() variável: tipagem = 0
+
+Para importar um valor para a variável que está no Input podemos fazer das
+seguintes maneiras:
+
+Componente 2.html:
+    <app-Componente1 [variável]="outraVariável ou um número fixo"></app-Componente1>
+    

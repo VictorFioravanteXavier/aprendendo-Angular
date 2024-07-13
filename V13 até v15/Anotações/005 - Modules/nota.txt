@@ -1,0 +1,72 @@
+Um module é um mecanismo para agrupar componentes, diretivas, pipes e serviços
+relacionados, de forma a combinar com outros módulos para criar uma aplicativo
+
+Uma aplicação angular pode ser pensada como um quebra cabeça.
+
+Onde cada bloco tem como objetivo fornecer uma funionalidade ou recurso específico.
+
+Construímos um Software como se fosse um quebra cabeça e conforme esse quebra cabeça
+crece, fica difícil e oneroso a sua manutenção.
+
+Por isso adotamos alguns modelos de arquitetura e construção de Software.
+
+O angular fornece uma boa maneira de organizar esses blocos de forma simples e 
+eficaz usando módulos (também conhecidos como ngModules).
+
+Anatomia:
+    @ngModules({
+        declarations: [],
+        inports: [],
+        exports: [],
+        providers: [],
+        bootstrap: [],
+    })
+
+    declarations - servem para declarar os componentes dentro do modulo específico
+    imports - importa funcionalidades de outros componentes 
+    exports - você exporta um componente para outro modulo pegar com import
+    providers - nesse você usa os services no caso do backend
+    bootstrap - sinaliza que o componente é o app-starter 
+
+Para criar um novo modules basta usar o comando:
+    ng g m "Caminho - Pasta"
+
+
+Para importar um module para outro basta colocar o component em exports e dar import
+na class em baixo do @ngModules no modules que utiliza tal module
+
+Exemplo:
+
+    shared.modules.ts:
+        @NgModule({
+            declarations: [
+                NewComponentComponent
+            ],
+            imports: [
+                CommonModule
+            ],
+            exports: [
+                NewComponentComponent
+            ]
+            })
+        export class SharedModule { }
+
+    app.modules.ts:
+        @NgModule({
+            declarations: [
+                AppComponent,
+                TitleComponent,
+                DataBidingComponent,
+                DiretivasEstruturaisComponent,
+                DiretivasAtributosComponent,
+            ],
+            imports: [
+                BrowserModule,
+                AppRoutingModule,
+                FormsModule,
+                SharedModule
+            ],
+            providers: [],
+            bootstrap: [AppComponent]
+        })
+        export class AppModule { }
