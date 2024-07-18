@@ -1,0 +1,82 @@
+você tera que salvar a url do seu server em uma variável privada:
+    private url: string = "http://localhost:3000/" //list-food
+
+apos salvar essa url você tera que cadastrar os modulos do Angular
+os modulos http para podermos fazer as requisições http com elementos
+do Angular;
+
+Primeiro você tera que ir no module onde está seu componente no nosso caso
+ele está no "shared.module.ts" você vai ter que colocar o seguinte import:
+    import { HttpClientModule } from '@angular/common/http';
+lembre de cadastralo no imports do module
+
+Apos ter colocado o import acima no seu module você vai ter que ir no seu
+arquivo service que ira fazer a requisição http e colocar no metodo construtor
+o seguinte comomando:
+    constructor(private http: HttpClient) { }
+
+
+Seguindo na função que retornaria a lista fixa no código do Angular você fará
+a seguinte mundaça:
+    public foofList(){
+        return this.http.get(`${this.url}list-food`); 
+    }
+no caso oque está acontecendo ele está pegando o arquivo json que está na url
+"http://localhost:3000/list-food" mas como colocamos a primeira parte na variável
+"url" só precisamos mostrar o caminho que desejamos pegar "list-food"
+
+
+Mas como a programação não é para amadores devemos deixar as boas praticas bem explicadas
+
+Na função que acabamos de atualizar devemos colocar como "Observable" no caso:
+    public foofList(): Observable{
+        return this.http.get(`${this.url}list-food`); 
+    }
+Portanto não somente isso devemos criar uma interface:
+    ng g i "caminho e nome da interface"
+para podermos tipar o "Observable" da função que se utilizarmos muitos pode 
+acaber de deixar o código muito dificil de dar manutenção.
+
+A interface vai ficar assim:
+    export interface FoodList {
+        id: number,
+        nome: string
+    }
+
+E para finalizar devemos tipar o "Observable" com nosso interface:
+    public foofList(): Observable<FoodList>{
+        return this.http.get<FoodList>(`${this.url}list-food`); 
+    }
+Lembre de tipar o get também
+
+
+Agora para mandar as informações para o outro componente devemos utilizar o seguinte comomando:
+    public foofList(): Observable<Array<FoodList>>{
+        return this.http.get<Array<FoodList>>(`${this.url}list-food`).pipe(
+            res => res,
+            error => error
+        ); 
+    }
+Estamos enviando junto do metodo pipe que está enviando o sucesso ou se tiver um erro
+
+
+No nosso componente que ira receber o novo metodo de aquisição de dados devemos colocar da seguinte forma:
+    ngOnInit(): void {
+        this.foodListService.foofList().subscribe(
+            res => this.foodList = res,
+            error => error
+        );
+
+        this.foodListService.emitEvent.subscribe(
+            res => alert(`Olha você add => ${res}`)
+        )
+    }
+Retiramos o comando que "foodList" recebia o "foodListService.foodList" por um subscribe que está se inscrevendo
+no metodo pipe do service e está declarando a resposta (res) na variável "foodList" do componente
+
+junto a isso devemos nos atentar a mudar a tipagem da variável foodList do nosso componente principal:
+    public foodList: Array<FoodList> = [];
+nesse caso ele pode receber "any (qualquer valor)" ou "FoodList" que é a nosso interface.
+
+Lembrando que agora como estamos fazendo uma requisição http de um arquivo json devemos tratar a variável
+como um objeto agora.

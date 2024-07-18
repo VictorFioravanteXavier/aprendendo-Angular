@@ -1,0 +1,63 @@
+Seguindo os mesmo passos do http-Get você tera que iniciar uma
+variável com a url do site a bla bla bla.
+
+Seguindop para o conteudo interessante agora iremos enviar um valor 
+para nosso json do fake-server;
+
+
+Para iniciarmos nosso objetivo é mandar um valor para o json usando metodos do 
+Angular, para isso fazemos quase a mesma coisa para dar Get nos valores;
+    public foodListAdd(value: string): Observable<FoodList>{
+      return this.http.post<FoodList>(`${this.url}list-food`, {nome: value}).pipe(
+        res => res,
+        error => error
+      )
+    }
+Como podemos ver usamos quase a mesma logica de usar nossa variável "url" que tem
+o dominio do server em que tá o json e adicionamos o caminho desejado onde queremos
+colocar as informações; só que em vez de usarmos o ".get<FoodList>" usamos o 
+".post<FoodList>" que tem que adicionar alguma coisa a mais no caso o valor que
+desejamos enviar para no arquivo json; depois disso se repete o metodo pipe igual
+a o do ".get".
+
+Não pense que vida de programador é facil não... Ainda para finalizar lembre que
+estamos usando um "Observable" que para ser usado tem que se escrever nele no caso
+usar ".subscribe". Então no nosso componente que está usando a função "foodListAdd"
+temos que nos inscrever no Observable, assim:
+    public listAddItem(value:string) {
+        return this.foodListService.foodListAdd(value).subscribe(
+            res => res,
+            error => error
+        );
+    }
+Estamos no inscrevendo no "Observable" do foodListAdd no nosso return;
+
+
+Agora para organizarmos nosso alert que utilizamos sempre que o usuário 
+adicionava algum item precisamos fazer algumas coisas:
+    public foodListAlert(value: FoodList) {
+        return this.emitEvent.emit(value)
+    }
+Mudamos a tipagem do do value do alert no caso nosso interfece <FoodList>
+
+Junto a isso fazemos:
+    public listAddItem(value:string) {
+        return this.foodListService.foodListAdd(value).subscribe(
+            res => this.foodListService.foodListAlert(res),
+            error => error
+        );
+    }
+Em vez da funçao "listAddItem" só retornar "res" ele chama o "foodListAlert" do 
+nosso Service quer ira fazer a função dele no caso emitir o valor para alert
+
+Agora no nosso componente principal:
+    this.foodListService.emitEvent.subscribe(
+        res => {
+            alert(`Olha você add => ${res.nome}`)
+            return this.foodList.push(res)
+        }
+    )
+Ajustamos como iremos chamar nosso alert, neste caso estamos nos inscrevendo no 
+"emitEvent" do Service e estamos passando como resposta o alert com o "items.nome"
+porque agora o foodList virou um objeto. Junto a isso adicionamos o novo valor na 
+lista de objetos.

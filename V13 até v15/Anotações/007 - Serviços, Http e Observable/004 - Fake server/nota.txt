@@ -1,0 +1,32 @@
+É para fazer uma fake requisição do servidor 
+
+No caso se tu precisar fazer uma requisição de um arquivo JSON e ele
+não estiver pronto você pode usar um fake server
+
+para fazer isso no computador precisamos dar o comando:
+    npm install -g json-server
+
+para funcionar crie uma pasta por exemplo "fake-server" que dentro 
+tera um arquivo "db.json" que dentro tera uma json normal:
+    {
+        "list-food": [
+            {
+                "id": 1,
+                "nome": "X-Bacon"
+            },
+            {
+                "id": 2,
+                "nome": "Feijão"
+            },
+            {
+                "id": 3,
+                "nome": "Ovo"
+            }
+        ]
+    }
+
+apos isso abra sua pasta do fake server no caso "fake-server" e utilize o seguinte comando:
+    json-server --wathc db.json 
+    "db.json" é no caso o arquivo que está o json que queremos pegar
+assim o servidor vai ficar funcionando assim você tendo um servidor que pode ser usado para 
+testes.

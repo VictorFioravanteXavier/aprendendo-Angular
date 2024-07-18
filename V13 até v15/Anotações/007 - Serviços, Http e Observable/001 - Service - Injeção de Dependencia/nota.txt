@@ -1,0 +1,42 @@
+Um service geralmente é usano para mandar dados ou funcionalidades como
+funções para diversos componentes por exemplo ele pode mandar uma array
+para um componente e para outro completamente diferente.
+
+geralmente é usado para chamar as APIs do back.
+
+para criar uma service no angular basta colocar o comando:
+    ng g s "caminho onde quer que ele seja criado e/ou nome dele"
+
+para começar a explicar os services primerio vamos colocar um array em um:
+    TS: 
+        export class FoodListService {
+
+            private list: Array<string> = [
+                "X-Bacon",
+                "Feijão",
+                "Ovo"
+            ];
+
+            constructor() { }
+
+            public foofList(){
+                return this.list;
+            }
+        }
+Basicamente com esse código estamos fazendo uma lista privada que ira receber valores
+em string essa lista só pode ser acessada pelo service.
+Em seguida criamos uma função que quando chamada ira retornar a lista que fizemos
+
+E para chamar esse service em um componente podemos fazer da seguinte forma:
+    constructor(private foodListService: FoodListService) { }
+No caso no metodo construtor do componente criamos uma variável privada novamente
+no caso só o arquivo "componente.component.ts" podera usar a variável e ela ira 
+receber a classe FoodListService (Tem que importar).
+
+Juntando tudo isso agora podemos atribuir a lista do service em uma lista do componente:
+    public foodList: Array<string> = [];
+    ngOnInit(): void {
+        this.foodList = this.foodListService.foofList();
+    }
+Agora estamos criando a variável que sera um array e que ira receber a array do service
+assim que o programa for iniciado com a função que retorna a array do service.

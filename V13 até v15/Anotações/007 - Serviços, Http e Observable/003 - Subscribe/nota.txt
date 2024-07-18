@@ -1,0 +1,35 @@
+subscribe é como se um componente se inscreve-se em um determinado emit
+assim no caso o service tera um EventEmitter que ira dar emit em um valor
+e esse valor vai ser captado por um componente.
+
+no caso do service ficaria assim:
+    public emitEvent = new EventEmitter
+
+    public foodListAdd(value: string){
+        this.foodListAlert(value)
+        this.list.push(value)
+    }
+
+    public foodListAlert(value: string) {
+        return this.emitEvent.emit(value)
+    }
+Estamos colocando uma variável para ser um EventEmitter. Junto a isso
+estamos declarando uma função que ira emitir o valor adicionado na função
+foodListAdd aí depois dele emitir e o usuário clicar em ok vai colocar o 
+valor adiocionado na lista.
+
+Já no componente que irá dar o alert por exemplo:
+    constructor(private foodListService: FoodListService) { }
+
+    ngOnInit(): void {
+        this.foodList = this.foodListService.foofList();
+
+        this.foodListService.emitEvent.subscribe(
+            res => alert(`Olha você add => ${res}`)
+        )
+    }
+Chamamos o service normalmente mas assim que o programa é iniciado
+o componente já de inscreve no emit do service então sempre que 
+der algum evento tipo um de click ele irá mandar esse alert.
+
+"res" = resposta

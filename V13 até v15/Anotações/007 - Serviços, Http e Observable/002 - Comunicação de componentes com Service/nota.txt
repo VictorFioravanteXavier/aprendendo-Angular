@@ -1,0 +1,19 @@
+É uma forma de comunicação de dois componentes sem usar um
+Input ou Output; somente com service.
+
+Basta no seu service criar uma função que por exemplo adicione
+um valor em uma lista:
+    TS:
+        public foodListAdd(value: string){
+            this.list.push(value)
+        }
+    
+Aí no componente que ira mandar a valor que deseja adicionar
+você puxa o service da mesma maneira:
+    constructor(private foodListService: FoodListService) { }
+
+com isso basta criar uma função ou algo para chamar o foodListAdd
+do seu service:
+    public listAddItem(value:string) {
+        return this.foodListService.foodListAdd(value)
+    }

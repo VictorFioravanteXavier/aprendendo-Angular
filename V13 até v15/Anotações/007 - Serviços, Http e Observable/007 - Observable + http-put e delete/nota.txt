@@ -1,0 +1,79 @@
+Vacê vai seguir os mesmos primeiros passos do http-Get para entrar no
+Fake-Server;
+
+Agora iremos fazer uma função para editar e deletar elementos selecionados;
+
+Para deletarmos algum elemento no nosso Service criamos uma função da seguinte
+maneira:
+    public foodListDelete(id: number): Observable<FoodList>{
+        return this.http.delete<FoodList>(`${this.url}list-food$/${id}`).pipe(
+            res => res,
+            error => error
+        )
+    };
+Aqui nos estamos fazendo uma função muito parecida com o metodo http-Post mas com 
+a difença de que em vez de pedirmos um valor em string pedimos em number no caso o "id"
+do elemento que desejamos deletar e colocamos essa variável no final do link do  fake-Server.
+
+Agora partindo para nosso compoenente principal vamos colocar um button no nosso html que
+quando clicado vai chamar uma função:
+    HTML:
+        <li *ngFor="let item of foodList">
+            [{{item.id}}] - {{item.nome}} 
+            <button (click)="foodListDelete(item.id)">
+                Deletar
+            </button>
+        </li>
+Ele vai chamr a função "foodListDelete" e vai enviar o id do item selecionado.
+
+Vamos criar a função que está sendo chamada no html:
+    public foodListDelete(id: number){
+        return this.foodListService.foodListDelete(id).subscribe(
+            res => {
+                this.foodList = this.foodList.filter(
+                    item => {
+                        return id !== item.id
+                    }
+                )
+            },
+            error => error
+        )
+    }
+Basicamente ela está chamando nossa função "foodListDelete" no nosso Service e para
+questões de reatividade se não der erro no res estamos fazendo a array receber ela
+mesma mas sem o dicionario que tenha o "id" igual a o retirado.
+
+
+Passando para a parte de editar um elemento que é uma parte mais delicada;
+
+No nosso Service vamos colocar a seguinte função:
+    public foodListEdit(value: string, id: number): Observable<FoodList>{
+        return this.http.put<FoodList>(`${this.url}list-food/${id}`, {nome: value}).pipe(
+            res => res,
+            error => error
+        )
+    };
+Nos seguimos a mesma forma de chamar o http mas em compensação adicionamos o "id" no link do
+fake-Server e passamos a variável que desejamos modificar;
+
+junta a isso precisamos modificar nosso html um pouco:
+    <li *ngFor="let item of foodList">
+        [{{item.id}}] - <input type="text" [(ngModel)]="item.nome" (keyup.enter)="foodListEdit(item.nome, item.id)">
+        <button (click)="foodListDelete(item.id)">
+            Deletar
+        </button>
+    </li>
+Agora em vez de colocar o "item.nome" direto colocamos ele dentro de um input que quando apretar
+a tecla enter ele vai acionar uma função;
+
+Sendo a função:
+    public foodListEdit(value: string, id: number){
+        this.foodListService.foodListEdit(value, id).subscribe(
+            res => {
+                return console.log(res)
+            },
+            error => error
+        )
+    }
+esse função vai chamar a função "foodListEdit" do nosso Service que e está passando o "value"
+e o "id" do item modificado. (não precisa modificar a lista porque já estamos apretando enter)
